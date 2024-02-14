@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo タスク閲覧</title>
+</head>
+<body>
+    <h1>タスク閲覧</h1>
+    
+    <h2>こんにちは {{user_id}}さん</h2>
+
+    {% if todos != [] %}
+
+    <form action="/sort_date" method="post">
+        <button type="submit">期限順</button>
+    </form>
+    <form action="/sort_id" method="post">
+        <button type="submit">記入順</button>
+    </form>
+
+    <p>タイトル / 期限</p>
+
+    {% endif %}
+    
+    <ul>
+        
+        {% for todo in todos %}
+        <li>
+            {{ todo.task }} / {{ todo.date }}
+            <form action="/delete/{{ todo.id }}" method="post" style="display:inline;">
+                <button type="submit">削除</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/input">タスク入力へ</a>
+    <a href="/">名前入力</a>
+
+
+</body>
+</html>
